@@ -11,3 +11,9 @@ failed_cmd 2>/dev/null || true
 find . -name "*.zip" | while read fn; do unzip -o -d "`dirname "$fn"`" "$fn"; done;
 ```
 
+# If/else one line
+
+```bash
+if [[ $(whoami) == "u" ]]; then echo "a"; else echo "b"; fi;
+```
+
