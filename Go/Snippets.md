@@ -17,6 +17,22 @@ func main() {
 }
 ```
 
+# Quick Error
+
+```go
+var (
+	ErrThing = errors.New("thing")
+)
+```
+
+# Check Error Type
+
+```go
+if errors.Is(err, errs.ErrInvalidRequest) {
+	fmt.Println("hello! :)")
+}
+```
+
 # Custom Error
 
 ```go
@@ -64,12 +80,5 @@ formatted := fmt.SPrintf("%str: %s\n", "stuff")
 %v -> value in its default format
 %+v -> include field names
 %#v -> include field names and type
-```
-
-
-# Build and Run One Liner
-
-```bash
-go build -o bin/ && bin/hello
 ```
 
