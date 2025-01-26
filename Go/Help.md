@@ -6,3 +6,4 @@
 go build -o bin/ && bin/hello
 ```
 
+# Test
