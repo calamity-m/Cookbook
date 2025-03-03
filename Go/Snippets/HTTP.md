@@ -124,7 +124,7 @@ func DecodeJSON[T any](r *http.Request) (T, error) {
 }
 ```
 
-# Graceful Shutdown
+# Run with Graceful Shutdown
 
 ```go
 func (s *Server) Shutdown() error {
@@ -164,6 +164,5 @@ func (s *Server) Run() error {
 	if err := s.ListenAndServe(); !errors.Is(err, http.ErrServerClosed) {
 		return fmt.Errorf("failed to start/close server due to: %w", err)
 	}
-
-
+}
 ```
