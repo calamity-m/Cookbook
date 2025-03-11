@@ -1,3 +1,8 @@
+# SCP/SSH Copy File
+
+```bash
+scp file.tgz user@ip:/remote/direct/to/put/it/in
+```
 
 # Delete lines in a file containing a string
 
