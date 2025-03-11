@@ -33,23 +33,3 @@ func A() *LoggingHandler {
 	return handler
 }
 ```
-
-# Serializing Nested Structs
-
-```go
-type Config struct {
-	Env              string `mapstructure:"env" json:"environment,omitempty"`
-	Server           server
-}
-
-type server struct {
-	Host string `mapstructure:"host" json:"host,omitempty"`
-	Port int    `mapstructure:"port" json:"port,omitempty"`
-}
-
-// End up with a serialization with a key path for
-// env, server.host and server.port
-```
-
-
-
