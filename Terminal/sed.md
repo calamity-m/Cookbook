@@ -17,3 +17,9 @@ sed -i '/pattern/d' file.json
 # checks for http://hello-world.com
 sed -i '/http:\/\/hello-world.com/d' file.json
 ```
+
+# Get node version
+
+```bash
+grep "\"version\"" package.json | sed 's/\(.*\)"version": "//g' | sed 's/",//g'
+```

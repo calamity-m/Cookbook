@@ -9,15 +9,14 @@ docker rm -vf $(docker ps -aq)
 docker system prune -a --volumes
 ```
 
+# Get shell on container
+
+```bash
+docker exec -it contanier /bin/sh
+```
 # Run container with bash
 
 ```bash
-# Runs the image with whatever the default shell is
-docker exec --rm -it $IMAGE
-
-# Run with specific shell
-docker exec -rm -it $IMAGE /bin/sh
-
 # Override entrypoint
 docker run --rm -it --entrypoint bash $IMAGE
 ```
