@@ -1,0 +1,11 @@
+
+# Example basic
+
+```rust
+[package]
+name = "minigrep"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+```

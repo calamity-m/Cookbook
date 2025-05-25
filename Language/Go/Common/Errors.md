@@ -1,21 +1,19 @@
 
-# Hello World
+# Check Error Type
 
 ```go
-package main
-
-import "fmt"
-
-func helloWorld() string {
-	return "Hello World"
-}
-
-func main() {
-	hello := helloWorld()
-	fmt.Println(hello + " Wow!? Again! " + hello2)
+if errors.Is(err, errs.ErrInvalidRequest) {
+	fmt.Println("hello! :)")
 }
 ```
 
+# Create New Error
+
+```go
+var (
+	ErrThing = errors.New("thing")
+)
+```
 
 # Custom Error
 

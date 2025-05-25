@@ -1,6 +1,4 @@
 
-# Opts Configuration
-
 ```go
 // This is the function we use to create a configured
 // something. In this case, a LoggingHandler.
