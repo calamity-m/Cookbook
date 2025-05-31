@@ -52,3 +52,34 @@ signal.Notify(sig, syscall.SIGINT, syscall.SIGTERM)
 //  Run the server
 exit := server.Run(sig)
 ```
+
+# GRPC Custom Error
+
+```go
+func ErrGRPCInvalidArgumentFromError(err error) error {
+	return &errGRPCInvalidArgument{err.Error()}
+}
+
+func ErrGRPCInvalidArgument(msg string) error {
+	return &errGRPCInvalidArgument{msg}
+}
+
+func ErrGRPCInvalidArgumentf(format string, a ...any) error {
+	return &errGRPCInvalidArgument{fmt.Sprintf(format, a...)}
+}
+
+type errGRPCInvalidArgument struct {
+	msg string
+}
+
+func (e *errGRPCInvalidArgument) Error() string {
+	return e.msg
+}
+
+func (e *errGRPCInvalidArgument) GRPCStatus() *status.Status {
+	return status.New(codes.InvalidArgument, fmt.Sprintf("invalid argument - %s", e.msg))
+}
+
+// used like...
+// return nil, ErrGRPCInvalidArgument("no entry provided")
+```

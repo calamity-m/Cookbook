@@ -98,6 +98,52 @@ func (pg *PGStore) HealthCheck() error {
 }
 ```
 
+## PGX Like Query With Named Arg
+
+```go
+// (@name::text IS NULL OR name ILIKE @name)
+args := pgx.NamedArgs{
+	"name": fmt.Sprintf("%%%s%%", filter.Name),
+}
+```
+
+## PGX Dynamic Query
+
+```go
+fSql := `
+SELECT
+	id,
+	uuid,
+	user_id,
+	submitted_at
+FROM
+	entries
+WHERE
+	user_id = @user_id
+AND
+	(@before::timestamp IS NULL OR submitted_at < @before::timestamp)
+AND
+	(@after::timestamp IS NULL OR submitted_at > @after::timestamp)
+`
+
+args := pgx.NamedArgs{
+	"user_id": filter.UserId,
+}
+
+if !filter.After.IsZero() {
+	args["after"] = pgtype.Timestamp{Time: filter.After, Valid: true}
+}
+
+if !filter.Before.IsZero() {
+	args["before"] = pgtype.Timestamp{Time: filter.Before, Valid: true}
+}
+
+rows, err := pg.pool.Query(ctx, fSql, args)
+if err != nil {
+	return nil, err
+}
+```
+
 # Redis
 
 ## Client

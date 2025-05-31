@@ -24,16 +24,11 @@ var (
 //}
 
 // Simple explicitly defined error
-type CustomError struct {
-	string msg
+type ErrCustom struct {
+	msg string
 }
 
-func (customErr *CustomError) Error string {
-	return customErr.msg
+func (e *ErrCustom) Error() string {
+	return e.msg
 }
-
-// Implictly created error
-func ErrRtn() {
-	return errors.New("err msg")
-} 
 ```
