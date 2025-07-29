@@ -1,6 +1,16 @@
 
-# Null safe access with defaults
-I wouldn't use this very often, but it's helpful for record-based configuration in spring
+# Compact Constructor
+
+```java
+@ConfigurationProperties(prefix = "app")
+public record AppProperties(DatabaseProps db) {
+    public AppProperties {
+        if (db == null) {
+            db = new DatabaseProps(null); // default to null connection
+        }
+    }
+```
+# Null safe access
 
 ```java
 public static String safeHost(AppProperties props) {
